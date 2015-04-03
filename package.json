@@ -1,0 +1,12 @@
+{
+  "name": "nixie-bar",
+  "version": "0.1.0",
+  "author": "Jeff Gibson <gibson.jeff@gmail.com>",
+  "main": "lib/node-nixiebar.js",
+  "dependencies": {
+    "cron": "1.0.9",
+    "restify": "3.0.1"
+  },
+  "private": "true",
+  "license": "MIT"
+}
