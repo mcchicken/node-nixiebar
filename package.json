@@ -9,9 +9,12 @@
     "mocha-lcov-reporter": "0.0.2",
     "restify": "3.0.1"
   },
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  },
   "scripts": {
     "test": "mocha spec"
   },
   "private": "true",
-  "license": "MIT"
+  "license": "MIT",
 }
