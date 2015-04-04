@@ -6,15 +6,18 @@
   "dependencies": {
     "coveralls": "^2.11.2",
     "cron": "1.0.9",
-    "mocha-lcov-reporter": "0.0.2",
     "restify": "3.0.1"
   },
   "devDependencies": {
     "chai": "^2.2.0",
-    "mocha": "^2.2.1"
+    "jscover": "^0.2.4",
+    "mocha": "^2.2.1",
+    "mocha-lcov-reporter": "0.0.2"
   },
   "scripts": {
-    "test": "mocha spec"
+    "test": "mocha spec",
+    "coverage": "`npm bin`/jscover cover ./spec/untappd.js",
+    "coveralls": "npm run-script coverage && node bin/coveralls.js < coverage/lcov.info"
   },
   "private": "true",
   "license": "MIT"
