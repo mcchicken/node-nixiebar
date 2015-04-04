@@ -16,5 +16,5 @@
     "test": "mocha spec"
   },
   "private": "true",
-  "license": "MIT",
+  "license": "MIT"
 }
