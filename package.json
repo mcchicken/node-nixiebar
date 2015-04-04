@@ -4,9 +4,14 @@
   "author": "Jeff Gibson <gibson.jeff@gmail.com>",
   "main": "lib/node-nixiebar.js",
   "dependencies": {
+    "coveralls": "^2.11.2",
     "cron": "1.0.9",
+    "mocha-lcov-reporter": "0.0.2",
     "restify": "3.0.1"
   },
+  "scripts": {
+    "test": "mocha spec"
+  }
   "private": "true",
   "license": "MIT"
 }
