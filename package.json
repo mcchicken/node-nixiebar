@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "mocha test",
-    "coveralls": "node node_modules/coveralls/bin/coveralls.js < mocha lib-cov -R mocha-lcov-reporter"
+    "coveralls": "mocha lib-cov -R mocha-lcov-reporter | node node_modules/coveralls/bin/coveralls.js"
   },
   "private": "true",
   "license": "MIT"
