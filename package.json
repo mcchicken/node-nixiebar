@@ -5,17 +5,19 @@
   "main": "lib/node-nixiebar.js",
   "dependencies": {
     "cron": "1.0.9",
-    "restify": "3.0.1",
-    "jscoverage": "^0.5.9"
+    "restify": "3.0.1"
   },
   "devDependencies": {
     "chai": "^2.2.0",
     "coveralls": "^2.11.2",
+    "jscoverage": "^0.5.9",
     "mocha": "^2.2.1",
     "mocha-lcov-reporter": "0.0.2"
   },
   "scripts": {
-    "test": "mocha test",
+    "test": "mocha test"
+  },
+  "after_scripts": {
     "coverage": "mocha lib-cov -R mocha-lcov-reporter > coverage/coverage.lcov",
     "coveralls": "npm run-script coverage && node node_modules/coveralls/bin/coveralls.js < ./coverage/coverage.lcov"
   },
