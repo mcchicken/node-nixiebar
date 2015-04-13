@@ -2,5 +2,5 @@ language: node_js
 node_js:
   - "0.12"
 after_script:
-  - "node node_modules/jscoverage lib lib-cov"
+  - "node node_modules/jscoverage/bin/jscoverage lib lib-cov"
   - "mocha lib-cov -R mocha-lcov-reporter | node node_modules/coveralls/bin/coveralls.js"
