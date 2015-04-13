@@ -16,8 +16,7 @@
   },
   "scripts": {
     "test": "mocha test",
-    "coverage": "mocha lib-cov -R mocha-lcov-reporter > coverage/coverage.lcov",
-    "coveralls": "npm run-script coverage && node node_modules/coveralls/bin/coveralls.js < ./coverage/coverage.lcov"
+    "coveralls": "node node_modules/coveralls/bin/coveralls.js < mocha lib-cov -R mocha-lcov-reporter"
   },
   "private": "true",
   "license": "MIT"
