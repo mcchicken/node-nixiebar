@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var Untappd = require('../lib/untappd.js');
+var Untappd = require('../lib/untappd-rest-client.js');
 
 describe('untappd', function() {
     var untappd;
