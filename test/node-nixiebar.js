@@ -46,15 +46,20 @@ describe('rest server', function() {
 
     describe('Untappd Client', function() {
         var isClientCalled = false;
+        var isDisplayShown = false;
+        var untappdUser;
 
         var untappd_client = {
             getUniqueBeersFor : function(user, callback) {
                 isClientCalled = true;
+                untappdUser = user;
             }
         }
 
         var nixie_display = {
-            display : function() {}
+            display : function() {
+                isDisplayShown = true;
+            }
         }
 
         var nixie_cron = new NixieCron([{username:"zombie_killer"}], untappd_client, nixie_display);
@@ -65,6 +70,13 @@ describe('rest server', function() {
 
         afterEach(function() {
             nixie_cron.stopJob();
+        });
+
+        it('should send request for username in cron job', function(done) {
+            setTimeout(function() {
+                expect(untappdUser.username).to.equal("zombie_killer");
+                done();
+            }, 1005);
         });
 
         it('should get unique beers for user after a second', function(done) {
