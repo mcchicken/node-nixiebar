@@ -107,7 +107,7 @@ describe('Nixie Bar', function() {
             nixie_cron.stopJob();
         });
 
-        it('should send request for provided Untappd user', function(done) {
+        it('should send request for provided Untappd user after a second', function(done) {
             setTimeout(function() {
                 expect(untappdUser.username).to.equal("zombie_killer");
                 done();
@@ -121,7 +121,7 @@ describe('Nixie Bar', function() {
             }, 1005);
         });
 
-        it('should send unique beer count for user to nixie tubes for display', function(done) {
+        it('should send unique beer count for user to display after a second', function(done) {
             setTimeout(function() {
                 expect(isDisplayShown).to.be.true;
                 done();
