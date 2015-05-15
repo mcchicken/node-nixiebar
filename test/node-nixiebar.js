@@ -53,6 +53,7 @@ describe('rest server', function() {
             getUniqueBeersFor : function(user, callback) {
                 isClientCalled = true;
                 untappdUser = user;
+                callback();
             }
         }
 
@@ -82,6 +83,13 @@ describe('rest server', function() {
         it('should get unique beers for user after a second', function(done) {
             setTimeout(function() {
                 expect(isClientCalled).to.be.true;
+                done();
+            }, 1005);
+        });
+
+        it('should send unique beer count to nixie tubes for display', function(done) {
+            setTimeout(function() {
+                expect(isDisplayShown).to.be.true;
                 done();
             }, 1005);
         });
