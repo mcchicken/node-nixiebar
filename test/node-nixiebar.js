@@ -3,11 +3,11 @@ var http = require('http');
 var RestServer = require('../lib/rest-server').RestServer;
 var NixieCron = require('../lib/nixietube-cron').NixieCron;
 
-describe('rest server', function() {
+describe('Nixie Bar', function() {
     var server = new RestServer([], []);
     server.start();
 
-    describe('REST APIs', function() {
+    describe('rest server', function() {
         beforeEach(function() {
             http.request({ "hostname" : "localhost",
                 "port" : 8080,
@@ -27,6 +27,40 @@ describe('rest server', function() {
             expect({username:"jimbob"});
         });
 
+        it('should get all users upon request', function() {
+            http.request({ "hostname" : "localhost",
+                "port" : 8080,
+                "path" : "/users/jimbob",
+                "method" : "PUT"});
+            http.request({ "hostname" : "localhost",
+                "port" : 8080,
+                "path" : "/users/pirate",
+                "method" : "PUT"});
+            http.request({ "hostname" : "localhost",
+                "port" : 8080,
+                "path" : "/users",
+                "method" : "GET"});
+            expect({username:"jimbob"}, {username:"pirate"});
+        });
+
+        it('should delete users upon request', function() {
+            http.request({ "hostname" : "localhost",
+                "port" : 8080,
+                "path" : "/users/jimbob",
+                "method" : "PUT"});
+            expect(201);
+            http.request({ "hostname" : "localhost",
+                "port" : 8080,
+                "path" : "/users",
+                "method" : "DELETE"});
+            expect(201);
+            http.request({ "hostname" : "localhost",
+                "port" : 8080,
+                "path" : "/users",
+                "method" : "GET"});
+            expect({});
+        });
+
         it('should start the cron job upon request', function() {
             http.request({hostname: "localhost",
                 port : 8080,
@@ -44,11 +78,10 @@ describe('rest server', function() {
         });
     });
 
-    describe('Untappd Client', function() {
+    describe('cron job', function() {
         var isClientCalled = false;
         var isDisplayShown = false;
         var untappdUser;
-
         var untappd_client = {
             getUniqueBeersFor : function(user, callback) {
                 isClientCalled = true;
@@ -56,16 +89,17 @@ describe('rest server', function() {
                 callback();
             }
         }
-
         var nixie_display = {
             display : function() {
                 isDisplayShown = true;
             }
         }
-
         var nixie_cron = new NixieCron([{username:"zombie_killer"}], untappd_client, nixie_display);
+
         beforeEach(function() {
             isClientCalled = false;
+            isDisplayShown = false;
+            untappdUser = null;
             nixie_cron.startJob();
         });
 
@@ -73,7 +107,7 @@ describe('rest server', function() {
             nixie_cron.stopJob();
         });
 
-        it('should send request for username in cron job', function(done) {
+        it('should send request for provided Untappd user', function(done) {
             setTimeout(function() {
                 expect(untappdUser.username).to.equal("zombie_killer");
                 done();
@@ -87,7 +121,7 @@ describe('rest server', function() {
             }, 1005);
         });
 
-        it('should send unique beer count to nixie tubes for display', function(done) {
+        it('should send unique beer count for user to nixie tubes for display', function(done) {
             setTimeout(function() {
                 expect(isDisplayShown).to.be.true;
                 done();
