@@ -128,4 +128,18 @@ describe('Nixie Bar', function() {
             }, 1005);
         });
     });
+
+    describe('display', function() {
+        it('should initialize raspberry pi GPIO connection to nixie tubes', function() {
+           //TODO: add test for configuration
+        });
+
+        it('should cache unique check ins for comparison effects', function() {
+            //TODO: add test for caching user beer counts
+        });
+
+        it('should flash LEDs if change in number of unique check ins', function() {
+           //TODO: add test for LED controls
+        });
+    })
 });
