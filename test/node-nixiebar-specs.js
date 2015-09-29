@@ -89,11 +89,13 @@ describe('Nixie Bar', function() {
                 callback();
             }
         }
+
         var nixie_display = {
             display : function() {
                 isDisplayShown = true;
             }
-        }
+        };
+
         var nixie_cron = new NixieCron([{username:"zombie_killer"}], untappd_client, nixie_display);
 
         beforeEach(function() {
